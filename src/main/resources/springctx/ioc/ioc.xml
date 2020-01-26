@@ -19,13 +19,19 @@
         </property>
     </bean>
 
-    <bean id="timeLimitedScope" class="corporate.course.spring.module.ioc.customscope.TimeLimited">
-        <property name="timeLimit" value="5000"/>
+    <bean id="timeLimitedScope" class="corporate.course.spring.module.ioc.customscope.TimeLimitedScope"
+          scope="prototype">
+        <property name="timeLimit" value="2"/> <!-- time of living for scope in seconds -->
     </bean>
 
-    <bean id="magicianSpellTemporary" class="corporate.course.spring.module.ioc.model.inventory.Spell"
+    <bean id="magicianSpellTemporary1" class="corporate.course.spring.module.ioc.model.inventory.Spell"
           scope="timeLimited">
         <constructor-arg name="damageLevel" value="5000"/>
+    </bean>
+
+    <bean id="magicianSpellTemporary2" class="corporate.course.spring.module.ioc.model.inventory.Spell"
+          scope="timeLimited">
+        <constructor-arg name="damageLevel" value="10000"/>
     </bean>
 
 </beans>

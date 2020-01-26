@@ -16,22 +16,26 @@ public class IocRun
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springctx/ioc/ioc.xml");
         ConfigurableBeanFactory configurableBeanFactory =
                 (ConfigurableBeanFactory) applicationContext.getAutowireCapableBeanFactory();
-
-        System.out.println("Registered scopes are: " +
+        System.out.println("\nRegistered scopes are: " +
                 Arrays.toString(configurableBeanFactory.getRegisteredScopeNames()));
+        System.out.println();
 
         Magician magician = (Magician) applicationContext.getBean("magician");
 
         Spell spell = (Spell) applicationContext.getBean("magicianSpell");
         magician.addSpell(spell);
         magician.hit();
+        System.out.println();
 
-        Spell temporarySpell = (Spell) applicationContext.getBean("magicianSpellTemporary");
-        magician.addSpell(temporarySpell);
+        Spell temporarySpell1 = (Spell) applicationContext.getBean("magicianSpellTemporary1");
+        magician.addSpell(temporarySpell1);
         magician.hit();
+        System.out.println();
 
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
+        Spell temporarySpell2 = (Spell) applicationContext.getBean("magicianSpellTemporary2");
+        magician.addSpell(temporarySpell2);
         magician.hit();
     }
 }
