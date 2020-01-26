@@ -1,25 +1,34 @@
 package corporate.course.spring.module.ioc.model.person;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import corporate.course.spring.module.ioc.model.inventory.Inventory;
 import corporate.course.spring.module.ioc.model.inventory.Spell;
 
 public class Magician extends Hero
 {
-    private Spell spell;
+    private Map<String, Inventory> spellMap = new HashMap<>();
 
-    public Magician(Spell spell)
+    public Magician()
     {
-        this.spell = spell;
         System.out.println(this.getClass().getSimpleName() + " created");
     }
 
-    @Override
-    public boolean isAlive()
+    public void addSpell(Inventory spell)
     {
-        return true;
+        spellMap.put(spell.getId(), spell);
     }
 
     public void hit()
     {
-        System.out.println("Magician hit with damage: " + spell.doDamage());
+        spellMap.keySet().forEach(key ->
+        {
+            Spell currentSpell = (Spell) spellMap.get(key);
+            if (Objects.nonNull(currentSpell))
+            System.out.println("Magician hit with damage: " + currentSpell.doDamage()
+                    + " by inventory: " + key);
+        });
     }
 }
