@@ -1,56 +1,43 @@
 package corporate.course.spring.module.ioc.customscope;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
-import org.springframework.core.NamedThreadLocal;
 
 public class TimeLimitedScope implements Scope
 {
-    private final ThreadLocal<Map<String, Object>> threadScope =
-            new NamedThreadLocal<>("Time Limited Scope")
-            {
-                @Override
-                protected Map<String, Object> initialValue()
-                {
-                    return new HashMap<>();
-                }
-            };
-
-    private long timeLimit;
-    private LocalDateTime creationTime;
-    private LocalDateTime destroyingTime;
+    private Map<String, Object> scope = new HashMap<>();
+    private long timeLimitMsec;
+    private Timer timer;
 
     public void setTimeLimit(long timeLimit)
     {
-        this.timeLimit = timeLimit;
+        this.timeLimitMsec = timeLimit * 1000;
     }
 
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory)
     {
-        Object scopedObject;
-        Map<String, Object> scope = this.threadScope.get();
-
-        if (isTimeOff())
+        if (Objects.isNull(scope))
         {
-            scope.remove(name);
-            System.out.println("Instance id: " + name + " was out of time.");
-            scopedObject = null;
+            System.out.println("Scope was destroyed");
+            return null;
         }
-        else
+
+        Object scopedObject;
+
+        if (Objects.isNull(scope.get(name)))
         {
             scopedObject = objectFactory.getObject();
             scope.put(name, scopedObject);
         }
-
-        if (creationTime == null)
+        else
         {
-            initTimer();
+            scopedObject = scope.get(name);
         }
+
+        runTimerAndCleanScope();
 
         return scopedObject;
     }
@@ -58,7 +45,6 @@ public class TimeLimitedScope implements Scope
     @Override
     public Object remove(String name)
     {
-        Map<String, Object> scope = this.threadScope.get();
         return scope.remove(name);
     }
 
@@ -80,19 +66,24 @@ public class TimeLimitedScope implements Scope
         return null;
     }
 
-    private void initTimer()
+    private void runTimerAndCleanScope()
     {
-        creationTime = LocalDateTime.now();
-        destroyingTime = creationTime.plusSeconds(timeLimit);
+        timer = new Timer();
+        timer.schedule(new DestroyTask(), timeLimitMsec);
     }
 
-    private boolean isTimeOff()
+    private class DestroyTask extends TimerTask
     {
-        if (destroyingTime == null)
+        @Override
+        public void run()
         {
-            return false;
+            for (String name : scope.keySet())
+            {
+                scope.remove(name);
+            }
+            timer.cancel();
+            scope = null;
+            System.out.println("Time for scope " + this.getClass().getSimpleName() + " is off!");
         }
-
-        return LocalDateTime.now().isAfter(destroyingTime);
     }
 }

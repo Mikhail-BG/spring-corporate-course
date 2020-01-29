@@ -21,7 +21,7 @@
 
     <bean id="timeLimitedScope" class="corporate.course.spring.module.ioc.customscope.TimeLimitedScope"
           scope="prototype">
-        <property name="timeLimit" value="2"/> <!-- time of living for scope in seconds -->
+        <property name="timeLimit" value="1"/> <!-- time of living for scope in seconds -->
     </bean>
 
     <bean id="magicianSpellTemporary1" class="corporate.course.spring.module.ioc.model.inventory.Spell"

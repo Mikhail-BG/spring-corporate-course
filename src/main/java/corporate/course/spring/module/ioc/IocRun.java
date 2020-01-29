@@ -34,8 +34,10 @@ public class IocRun
 
         Thread.sleep(5000);
 
-        Spell temporarySpell2 = (Spell) applicationContext.getBean("magicianSpellTemporary2");
+        Spell temporarySpell2 = (Spell) applicationContext.getBean("magicianSpellTemporary1");
+        Spell temporarySpell3 = (Spell) applicationContext.getBean("magicianSpellTemporary2");
         magician.addSpell(temporarySpell2);
+        magician.addSpell(temporarySpell3);
         magician.hit();
     }
 }
