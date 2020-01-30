@@ -15,7 +15,8 @@
 *.iws
 *.iml
 *.ipr
-/out/ 
+/out/
+target/
 
 # Package Files #
 *.jar
