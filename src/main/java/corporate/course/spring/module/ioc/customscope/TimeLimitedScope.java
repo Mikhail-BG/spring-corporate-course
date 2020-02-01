@@ -70,6 +70,7 @@ public class TimeLimitedScope implements Scope
     {
         timer = new Timer();
         timer.schedule(new DestroyTask(), timeLimitMsec);
+        System.out.println("Time for scope " + this.getClass().getSimpleName() + " is off!");
     }
 
     private class DestroyTask extends TimerTask
@@ -83,7 +84,6 @@ public class TimeLimitedScope implements Scope
             }
             timer.cancel();
             scope = null;
-            System.out.println("Time for scope " + this.getClass().getSimpleName() + " is off!");
         }
     }
 }

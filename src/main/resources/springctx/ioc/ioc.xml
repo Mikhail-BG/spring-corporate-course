@@ -4,9 +4,9 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="magician" class="corporate.course.spring.module.model.person.Magician"/>
+    <bean id="magician" class="corporate.course.spring.module.ioc.model.person.Magician"/>
 
-    <bean id='magicianSpell' class="corporate.course.spring.module.model.inventory.Spell">
+    <bean id='magicianSpell' class="corporate.course.spring.module.ioc.model.inventory.Spell">
         <constructor-arg name="damageLevel" value="5"/>
     </bean>
 
@@ -24,12 +24,12 @@
         <property name="timeLimit" value="1"/> <!-- time of living for scope in seconds -->
     </bean>
 
-    <bean id="magicianSpellTemporary1" class="corporate.course.spring.module.model.inventory.Spell"
+    <bean id="magicianSpellTemporary1" class="corporate.course.spring.module.ioc.model.inventory.Spell"
           scope="timeLimited">
         <constructor-arg name="damageLevel" value="5000"/>
     </bean>
 
-    <bean id="magicianSpellTemporary2" class="corporate.course.spring.module.model.inventory.Spell"
+    <bean id="magicianSpellTemporary2" class="corporate.course.spring.module.ioc.model.inventory.Spell"
           scope="timeLimited">
         <constructor-arg name="damageLevel" value="10000"/>
     </bean>
