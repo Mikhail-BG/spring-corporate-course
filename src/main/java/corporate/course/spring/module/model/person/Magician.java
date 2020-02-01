@@ -1,10 +1,10 @@
-package corporate.course.spring.module.ioc.model.person;
+package corporate.course.spring.module.model.person;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import corporate.course.spring.module.ioc.model.inventory.Inventory;
+import corporate.course.spring.module.model.inventory.Inventory;
 
 public class Magician extends Hero
 {

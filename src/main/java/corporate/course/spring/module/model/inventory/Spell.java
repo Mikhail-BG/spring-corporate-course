@@ -1,4 +1,4 @@
-package corporate.course.spring.module.ioc.model.inventory;
+package corporate.course.spring.module.model.inventory;
 
 public class Spell implements Inventory
 {

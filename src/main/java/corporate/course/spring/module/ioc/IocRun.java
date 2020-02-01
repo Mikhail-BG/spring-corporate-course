@@ -6,8 +6,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import corporate.course.spring.module.ioc.model.inventory.Spell;
-import corporate.course.spring.module.ioc.model.person.Magician;
+import corporate.course.spring.module.model.inventory.Spell;
+import corporate.course.spring.module.model.person.Magician;
 
 public class IocRun
 {
