@@ -37,7 +37,7 @@ public class TimeLimitedScope implements Scope
             scopedObject = scope.get(name);
         }
 
-        runTimerAndCleanScope();
+        runTimerAndDestroyScope();
 
         return scopedObject;
     }
@@ -66,7 +66,7 @@ public class TimeLimitedScope implements Scope
         return null;
     }
 
-    private void runTimerAndCleanScope()
+    private void runTimerAndDestroyScope()
     {
         timer = new Timer();
         timer.schedule(new DestroyTask(), timeLimitMsec);
