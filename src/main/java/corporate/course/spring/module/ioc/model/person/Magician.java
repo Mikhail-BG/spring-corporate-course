@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import corporate.course.spring.module.ioc.model.inventory.Inventory;
-import corporate.course.spring.module.ioc.model.inventory.Inventory;
 
 public class Magician extends Hero
 {
@@ -26,7 +25,7 @@ public class Magician extends Hero
         for (Inventory spell : spells)
             if (Objects.nonNull(spell))
             {
-                System.out.println("Magician hit with damage: " + spell.doDamage() + " by inventory: "
+                System.out.println("Magician hits with damage: " + spell.doDamage() + " by inventory: "
                         + spell.getId());
             }
             else

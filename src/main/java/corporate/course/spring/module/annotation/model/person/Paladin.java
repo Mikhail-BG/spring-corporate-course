@@ -30,7 +30,7 @@ public class Paladin
         for (Sword sword : swords)
             if (Objects.nonNull(sword))
             {
-                System.out.println("Paladin hit with damage: " + sword.doDamage() + " by sword: "
+                System.out.println("Paladin hits with damage: " + sword.doDamage() + " by sword: "
                         + sword.getId());
             }
             else

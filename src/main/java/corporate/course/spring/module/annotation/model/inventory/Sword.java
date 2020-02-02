@@ -3,13 +3,13 @@ package corporate.course.spring.module.annotation.model.inventory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import corporate.course.spring.module.annotation.model.TimeLimitedStuff;
+
 @Component //3 set annotation Component to identify bean
 @Primary //4 set annotation Primary to identify default bean
-public class Sword
+public class Sword extends TimeLimitedStuff
 {
-    private static int counter = 0;
     private int damageLevel;
-    private String id;
 
     public Sword()
     {
@@ -24,14 +24,9 @@ public class Sword
         System.out.println(this.getClass().getSimpleName() + " with id = " + this.getId() + " created");
     }
 
-    public void generateId()
+    public void setDamageLevel(int damageLevel)
     {
-        this.id = this.getClass().getSimpleName() + " " + counter;
-    }
-
-    public String getId()
-    {
-        return id;
+        this.damageLevel = damageLevel;
     }
 
     public int doDamage()
