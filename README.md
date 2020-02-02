@@ -1,19 +1,19 @@
 # spring-corporate-course
 ___
-### Task 1
+## Task 1
 1.1 Implement custom scope.
 
 1.2 Implement singleton custom scope with timer.
 
-#####Solution for task 1 reference:
+####Solution for task 1 reference:
 `corporate.course.spring.module.ioc.IocRun`
 ___
-### Task 2
+## Task 2
 2.1 Step by step move to annotations.
 
 2.2 Implement custom BeanPostProcessor and BeanFactoryPostProcessor
 
-#####Solution for task 2 reference:
+####Solution for task 2 reference:
 `corporate.course.spring.module.annotation.AnnotationRun`
 
 _Notes:
