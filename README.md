@@ -1,5 +1,5 @@
 # spring-corporate-course
-___
+
 ## Task 1
 1.1 Implement custom scope.
 
